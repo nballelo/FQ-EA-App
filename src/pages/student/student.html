@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="back()" *ngIf="!edit">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{student.name}}</ion-title>
+  <ion-buttons end>
+    <button ion-button (click)="editProfile()" *ngIf="!edit">
+      <ion-icon name="md-settings"></ion-icon>
+    </button>
+
+  </ion-buttons>
+    <ion-buttons end *ngIf="edit">
+    <button ion-button (click)="editProfile()">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+    <button ion-button (click)="update()" strong>
+      <ion-icon name="md-checkmark" showWhen="android"></ion-icon>
+    </button>
+  </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="item-detail" padding *ngIf="!edit">
+    <h2>{{student.name}}</h2>
+    <p>{{student.address}}</p>
+    <p>Home: +34 {{student.phones[0].home}} </p>
+    <p>Work: +34 {{student.phones[0].work}}</p>
+    <p>{{student.studies}}</p>
+  </div>
+
+  <form *ngIf="studentForm &&edit" [(formGroup)] ="studentForm" >
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Name" formControlName="name" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Address" formControlName="address" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Phone1" formControlName="phone1"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Phone2" formControlName="phone2"></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label>Studies</ion-label>
+          <ion-select formControlName="studies">
+            <ion-option value="telemática">Telemática</ion-option>
+            <ion-option value="sistemes">Sistemes</ion-option>
+            <ion-option value="aeronavegació">Aeronavegació</ion-option>
+            <ion-option value="aeronátutica">Aeronátutica</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </form>
+</ion-content>

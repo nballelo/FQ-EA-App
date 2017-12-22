@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Students</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="md-person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<ion-searchbar (submit)="getItems(serach.value)" placeholder="Search" #serach></ion-searchbar>-->
+  <ion-list>
+    <ion-list-header >
+      TELEMÁTICA
+    </ion-list-header>
+    <div *ngFor="let student of students">
+      <button ion-item *ngIf="student.studies=='telemática'" (click)="navigate(student)">
+        <ion-avatar item-start >
+          <ion-icon  md="md-wifi" ></ion-icon>
+        </ion-avatar>
+        <h2>{{student.name}}</h2>
+      </button>
+    </div>
+
+    <ion-list-header>
+      SISTEMES
+    </ion-list-header>
+    <div *ngFor="let student of students">
+      <button ion-item *ngIf="student.studies=='sistemes'" (click)="navigate(student)">
+        <ion-avatar item-start >
+          <ion-icon md="md-radio" ></ion-icon>
+        </ion-avatar>
+        <h2>{{student.name}}</h2>
+      </button>
+    </div>
+    <ion-list-header>
+      AERONÁUTICA
+    </ion-list-header>
+    <div *ngFor="let student of students">
+      <button ion-item *ngIf="student.studies=='aeronátutica'" (click)="navigate(student)">
+        <ion-avatar item-start >
+          <ion-icon md="md-cog" ></ion-icon>
+        </ion-avatar>
+        <h2>{{student.name}}</h2>
+      </button>
+    </div>
+    <ion-list-header>
+      AERONAVEGACIÓ
+    </ion-list-header>
+    <div *ngFor="let student of students">
+      <button ion-item *ngIf="student.studies=='aeronavegació'" (click)="navigate(student)">
+        <ion-avatar item-start >
+          <ion-icon  md="md-boat" ></ion-icon>
+        </ion-avatar>
+        <h2>{{student.name}}</h2>
+      </button>
+    </div>
+
+  </ion-list>
+</ion-content>

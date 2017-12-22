@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="createSubject()" [disabled]="!isReadyToSave" strong>
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+  <ion-content>
+    <form *ngIf="subject" [formGroup]="subject" (ngSubmit)="createSubject()">
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" placeholder="Name" formControlName="name" ></ion-input>
+        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-label>Quatrimestre</ion-label>
+            <ion-select formControlName="quatrimestre">
+              <ion-option value="primavera">Primavera</ion-option>
+              <ion-option value="tardor">Tardor</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item>
+            <ion-label>Studies</ion-label>
+            <ion-select formControlName="studies">
+              <ion-option value="telemática">Telemática</ion-option>
+              <ion-option value="sistemes">Sistemes</ion-option>
+              <ion-option value="aeronavegació">Aeronavegació</ion-option>
+              <ion-option value="aeronátutica">Aeronátutica</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+    </form>
+  </ion-content>

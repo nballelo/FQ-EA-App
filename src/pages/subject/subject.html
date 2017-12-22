@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="back()" *ngIf="!edit">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+
+    </ion-buttons>
+    <ion-title>{{subject.name}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="editProfile()" *ngIf="!edit">
+        <ion-icon name="md-settings"></ion-icon>
+      </button>
+
+    </ion-buttons>
+    <ion-buttons end *ngIf="edit">
+      <button ion-button (click)="editProfile()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+      <button ion-button (click)="update()" strong>
+        <ion-icon name="md-checkmark" showWhen="android"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="item-detail" padding *ngIf="!edit">
+    <h2>{{subject.name}}</h2>
+    <p>{{subject.studies}}</p>
+    <p>{{subject.quatrimestre}}</p>
+  </div>
+  <div *ngIf="!edit">
+    <ion-list>
+    <ion-item *ngFor="let student of subject.students">
+      <ion-avatar item-start >
+        <ion-icon ios="ios-pulse" md="md-wifi" ></ion-icon>
+      </ion-avatar>
+      <h2>{{student.name}}</h2>
+    </ion-item>
+    </ion-list>
+  </div>
+
+  <form *ngIf="subjectForm &&edit" [(formGroup)] ="subjectForm" >
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Name" formControlName="name" ></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label>Quatrimestre</ion-label>
+          <ion-select formControlName="quatrimestre">
+            <ion-option value="primavera">Primavera</ion-option>
+            <ion-option value="tardor">Tardor</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label>Studies</ion-label>
+          <ion-select formControlName="studies">
+            <ion-option value="telemática">Telemática</ion-option>
+            <ion-option value="sistemes">Sistemes</ion-option>
+            <ion-option value="aeronavegació">Aeronavegació</ion-option>
+            <ion-option value="aeronátutica">Aeronátutica</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+    <div *ngIf="edit">
+      <ion-list>
+        <ion-item *ngFor="let student of subject.students">
+          <ion-avatar item-start >
+            <ion-icon ios="ios-pulse" md="md-wifi" ></ion-icon>
+          </ion-avatar>
+          <h2>{{student.name}}
+            <button (click)="DeleteStudent(student._id)">Del</button>
+          </h2>
+        </ion-item>
+      </ion-list>
+    </div>
+    <h2>Add Students</h2>
+    <ion-list>
+      <div *ngFor="let student of students">
+        <button ion-item *ngIf="student.studies=='telemática'" (click)="Add(student)">
+          <ion-avatar item-start >
+            <ion-icon ios="ios-pulse" md="md-wifi" ></ion-icon>
+          </ion-avatar>
+          <h2>{{student.name}}</h2>
+        </button>
+      </div>
+    </ion-list>
+  </form>
+
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Subjects</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup] ="subForm" (change)="filter()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Filter by qutrimestre:</ion-label>
+        <ion-select formControlName="quatrimestre" >
+          <ion-option value=""></ion-option>
+          <ion-option value="primavera">Primavera</ion-option>
+          <ion-option value="tardor">Tardor</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Filter by studies:</ion-label>
+        <ion-select formControlName="studies" >
+          <ion-option value=""></ion-option>
+          <ion-option value="telemática">Telemática</ion-option>
+          <ion-option value="sistemes">Sistemes</ion-option>
+          <ion-option value="aeronavegació">Aeronavegació</ion-option>
+          <ion-option value="aeronátutica">Aeronátutica</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-buttons>
+      <button ion-button icon-only (click)="filter()">
+        <ion-icon name="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </form>
+
+  <ion-list>
+      <div *ngFor="let subject of subjects">
+      <button ion-item (click)="navigate(subject)">
+        <h2>{{subject.name}}</h2>
+        <div *ngFor="let graph of graphs">
+          <p *ngIf="graph.name==subject.name">students:{{graph.percentage}}%</p>
+        </div>
+      </button>
+    </div>
+  </ion-list>
+</ion-content>
